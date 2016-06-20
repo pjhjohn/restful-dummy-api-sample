@@ -4,9 +4,9 @@ class DummyController < ApplicationController
     begin
       @item = Datum.new
       update(@item)
-      render :json => {:success => True}
+      render :json => {:success => 1, :data => @item}
     rescue
-      render :json => {:success => False}
+      render :json => {:success => 0}
     end
   end
   

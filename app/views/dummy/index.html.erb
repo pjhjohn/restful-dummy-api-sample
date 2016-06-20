@@ -1,0 +1,43 @@
+<%= form_tag '/dummy/c', id: 'form' do %>
+  <%# name %>
+  <div class="row">
+    <%= label_tag :name, "name" %>
+    <%= text_field_tag :name, nil %>
+  </div>
+  <%# image_url %>
+  <div class="row">
+    <%= label_tag :image_url, "image_url" %>
+    <%= text_field_tag :image_url, nil %>
+  </div>
+  <%= submit_tag '올리기', id: 'form-submit', class: "btn vert-margined-20", style: "width:100%;" %>
+<% end %>
+
+<div class="row">
+  <table class="striped centered">
+    <thead>
+      <tr>
+        <th data-field="id">ID</th>
+        <th data-field="name">Name</th>
+        <th data-field="image_url">Image URL</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  var tr = "<tr><td>{{id}}</td><td>{{name}}</td><td>{{image_url}}</td></tr>";
+  $(document).ready(function() {
+    $('#form-submit').on("click", function( event ) {
+      event.preventDefault();
+      $.post({
+        url: "/dummy/c",
+        data:  $('#form').serialize()
+      })
+      .done(function(response) {
+        $('tbody').append($(Mustache.render(tr, response.data)));
+      });
+    });
+  });
+</script>

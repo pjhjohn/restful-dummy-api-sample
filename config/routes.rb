@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'dummy/c'
+  post 'dummy/c'
 
   get 'dummy/r/:id' => 'dummy#r'
 
@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'dummy/d/:id' => 'dummy#d'
 
   get 'dummy/all'
+
+  get 'dummy' => 'dummy#index'
+  get 'dummy/index' => 'dummy#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
